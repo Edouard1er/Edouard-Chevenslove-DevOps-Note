@@ -1,0 +1,22 @@
+FROM python:3.8.1
+
+RUN mkdir /opt/Django-app/
+
+
+WORKDIR /opt/Django-app/
+
+
+COPY . .
+
+
+WORKDIR /opt/Django-app/django-blog
+
+ENV PYTHONUNBUFFERED=1
+
+
+RUN pip install -r requirments.txt
+
+
+RUN  python manage.py migrate
+
+CMD [ "python" , "manage.py", "runserver", "0.0.0.0:8000"]
